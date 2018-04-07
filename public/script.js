@@ -7,6 +7,7 @@ var eagles = []; //brown
 var pressedGrasses = []; //lighter lime grass
 var lakes = []; //lightblue
 var upgradedGrasses = []; //green
+//test
 
 function randClasses(amount, type){
     for(i = 0; i < amount; i++){

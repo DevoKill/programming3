@@ -7,16 +7,15 @@ var eagles = []; //brown
 var pressedGrasses = []; //lighter lime grass
 var lakes = []; //lightblue
 var upgradedGrasses = []; //green
-//test
 
-function randClasses(amount, type){
-    for(i = 0; i < amount; i++){
-        var randx = Math.round(Math.random()*(n-1));
-        var randy = Math.round(Math.random()*(n-1));
-        if(matrix[randy][randx] == 1 || matrix[randy][randx] == 0){
+function randClasses(amount, type) {
+    for (i = 0; i < amount; i++) {
+        var randx = Math.round(Math.random() * (n - 1));
+        var randy = Math.round(Math.random() * (n - 1));
+        if (matrix[randy][randx] == 1 || matrix[randy][randx] == 0) {
             matrix[randy][randx] = type;
-        }  
-        else{
+        }
+        else {
             i--;
         }
     }
@@ -33,23 +32,23 @@ for (var y = 0; y < n; y++) {
 
 //two bears in the corners
 matrix[0][0] = 4;
-matrix[0][n-1] = 4;
+matrix[0][n - 1] = 4;
 
-for(var a = 0; a < 4; a++){
-    var x = Math.round(Math.random()*(n-5));
-    var y = Math.round(Math.random()*(n-5));
+for (var a = 0; a < 4; a++) {
+    var x = Math.round(Math.random() * (n - 5));
+    var y = Math.round(Math.random() * (n - 5));
     var directions = [
-                [x, y],
-                [x - 1, y - 1],
-                [x, y - 1],
-                [x + 1, y - 1],
-                [x - 1, y],
-                [x + 1, y],
-                [x - 1, y + 1],
-                [x, y + 1],
-                [x + 1, y + 1]
-            ];
-    for(var i in directions){
+        [x, y],
+        [x - 1, y - 1],
+        [x, y - 1],
+        [x + 1, y - 1],
+        [x - 1, y],
+        [x + 1, y],
+        [x - 1, y + 1],
+        [x, y + 1],
+        [x + 1, y + 1]
+    ];
+    for (var i in directions) {
         var found = [];
         for (var i in directions) {
             var x = directions[i][0];
@@ -58,18 +57,19 @@ for(var a = 0; a < 4; a++){
                 if (matrix[y][x] == 1 || matrix[y][x] == 0) {
                     found.push(directions[i]);
                     var d = Math.floor(Math.random() * 9)
-                    if(d == 1){
+                    if (d == 1) {
                         matrix[y][x] = 6;
                     }
                 }
             }
         }
     }
-} 
+}
 randClasses(5, 2);
 randClasses(3, 3);
 
 function setup() {
+    noStroke();
     frameRate(20);
     createCanvas(n * side + 1, n * side + 1);
     for (var y = 0; y < matrix.length; y++) {
@@ -93,7 +93,7 @@ function setup() {
             else if (matrix[y][x] == 5) {
                 var pressedGrass = new PressedGrass(x, y);
                 pressedGrasses.push(pressedGrass);
-            } 
+            }
             else if (matrix[y][x] == 6) {
                 var lake = new Lake(x, y);
                 lakes.push(lake);
@@ -142,10 +142,10 @@ function draw() {
                 rect(x * side, y * side, side, side);
             }
         }
-    } 
+    }
     for (var i in grasses) {
         grasses[i].bazmanal();
-    } 
+    }
     for (var i in pressedGrasses) {
         pressedGrasses[i].live(i);
     }
@@ -154,9 +154,9 @@ function draw() {
     }
     for (var i in upgradedGrasses) {
         upgradedGrasses[i].bazmanal(i);
-    }  
+    }
     eagles[0].utel(1);
-    eagles[1].utel(2); 
+    eagles[1].utel(2);
     for (var i in sheeps) {
         sheeps[i].utel();
         if (sheeps[i].energy <= 0) {
@@ -165,14 +165,14 @@ function draw() {
         else if (sheeps[i].energy >= 9) {
             sheeps[i].bazmanal();
         }
-    }  
+    }
     for (var i in wolves) {
         wolves[i].utel();
         if (wolves[i].energy <= 0) {
             wolves[i].die();
         }
         else if (wolves[i].energy >= 100) {
-           wolves[i].bazmanal();
+            wolves[i].bazmanal();
         }
-    } 
+    }
 }

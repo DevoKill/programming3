@@ -1,11 +1,8 @@
-
-class Wolf {
+class Wolf extends Creature{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.energy = 50;
     }
-
     stanalNorKordinatner() {
         this.directions = [
             [this.x - 2, this.y - 2],
@@ -35,23 +32,10 @@ class Wolf {
             [this.x + 2, this.y + 2]
         ];
     }
-    secondHalf(){
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-    }
-
     cho(ch) {
         var found = [];
         if(ch == 3){
-            this.secondHalf();
+            super.stanalNorKordinatner();
             for (var i in this.directions) {
                 var x = this.directions[i][0];
                 var y = this.directions[i][1];
@@ -91,11 +75,6 @@ class Wolf {
             var norGrass = new PressedGrass(this.x, this.y);
             pressedGrasses.push(norGrass); 
             matrix[this.y][this.x] = 5; 
-            /*
-            var norGrass = new Grass(this.x, this.y);
-            grasses.push(norGrass); 
-            matrix[this.y][this.x] = 1; 
-            */
             this.svaboda = 1;
             this.x = norVandak[0];
             this.y = norVandak[1];

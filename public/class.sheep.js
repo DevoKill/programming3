@@ -1,4 +1,3 @@
-
 class Sheep extends Creature {
     constructor(x, y) {
         super(x, y);

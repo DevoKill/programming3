@@ -1,4 +1,4 @@
-class PressedGrass {
+class PressedGrass{
     constructor(x, y) {
         this.x = x;
         this.y = y;

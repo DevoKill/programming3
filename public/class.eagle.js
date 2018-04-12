@@ -19,7 +19,7 @@ class Eagle extends Creature{
             }
         }
     }
-    cho(ch) {
+    cho(ch) {cd
         this.cordinates();
         return super.cho(ch);
     }
